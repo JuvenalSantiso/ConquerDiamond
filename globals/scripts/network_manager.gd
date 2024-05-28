@@ -54,6 +54,7 @@ func disable_peer() -> void:
 
 # Deletes the specified peer from the list
 func erase_peer(id: int) -> void:
+	GameManager.remove_player(id)
 	self.peer_dict.erase(id)
 	var players = get_tree().get_nodes_in_group("Player")
 	for player in players:
@@ -65,21 +66,10 @@ func erase_peer(id: int) -> void:
 func add_peer(id, pname) -> void:
 	var data = {
 			"usr_name" : pname,
-			"id" : id,
-			"score": 0
+			"id" : id
 		}
 	if !self.peer_dict.has(data.id):
 		self.peer_dict[data.id] = data
-
-
-# To be called from remote. Is given the id and information of a remote peer
-@rpc("any_peer")
-func send_player_info(id: int, usr_name: String) -> void:
-	self.add_peer(id, usr_name)
-	
-	if multiplayer.is_server():
-		for player_id in self.peer_dict:
-			self.send_player_info.rpc(player_id, peer_dict[player_id].usr_name)
 
 
 # Called on the host and clients when a new peer connects
@@ -101,3 +91,16 @@ func _on_connected_to_server() -> void:
 # Called when the users fails to connect to a server
 func _on_connection_failed() -> void:
 	print("Couldnt Connect")
+
+
+
+# To be called from remote. Is given the id and information of a remote peer
+@rpc("any_peer")
+func send_player_info(id: int, usr_name: String) -> void:
+	self.add_peer(id, usr_name)
+	
+	GameManager.add_player({"id": id, "usr_name": usr_name})
+	
+	if multiplayer.is_server():
+		for player_id in self.peer_dict:
+			self.send_player_info.rpc(player_id, peer_dict[player_id].usr_name)

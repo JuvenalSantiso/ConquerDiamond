@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://b84jnx52yfki"]
+[gd_scene load_steps=2 format=3 uid="uid://b84jnx52yfki"]
+
+[ext_resource type="Script" path="res://gui/main_menu.gd" id="1_2kpw0"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -7,6 +9,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
+script = ExtResource("1_2kpw0")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -38,12 +42,66 @@ layout_mode = 2
 [node name="Separator3" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 
-[node name="Play" type="Button" parent="VBoxContainer"]
+[node name="Host" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-text = "Play"
+text = "Host"
+
+[node name="Join" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Join
+"
 
 [node name="Separator6" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 
 [node name="Separator7" type="Label" parent="VBoxContainer"]
 layout_mode = 2
+
+[node name="IP" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -166.0
+offset_top = -20.0
+offset_right = 169.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="IP"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="IPEdit" type="TextEdit" parent="IP/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "127.0.0.1:5500"
+
+[node name="Go" type="Button" parent="IP/HBoxContainer"]
+layout_mode = 2
+text = "OK"
+
+[node name="Cancel" type="Button" parent="IP"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -18.0
+offset_top = -31.0
+grow_horizontal = 0
+grow_vertical = 0
+rotation = 4.71239
+text = "X"
+
+[connection signal="button_up" from="VBoxContainer/Host" to="." method="_on_host_button_up"]
+[connection signal="button_up" from="VBoxContainer/Join" to="." method="_on_play_button_up"]
