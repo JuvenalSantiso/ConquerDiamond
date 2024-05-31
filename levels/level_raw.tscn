@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dngoj24csxbng"]
+[gd_scene load_steps=6 format=3 uid="uid://dngoj24csxbng"]
 
 [ext_resource type="TileSet" uid="uid://dg2keq1xlqwdc" path="res://levels/tiles/background_tile.tres" id="1_fgcm5"]
 [ext_resource type="TileSet" uid="uid://6k0n5mxi5bo3" path="res://levels/tiles/platforms.tres" id="2_1gjop"]
 [ext_resource type="PackedScene" uid="uid://cy3555036gbi4" path="res://hazards/spike.tscn" id="3_kngbi"]
 [ext_resource type="Script" path="res://levels/scripts/MultiplayerSpawner.gd" id="4_pxh0s"]
+[ext_resource type="PackedScene" uid="uid://cmrb6vhkusord" path="res://objects/diamond.tscn" id="5_ti40y"]
 
 [node name="LevelRaw" type="Node2D"]
 
@@ -40,11 +41,16 @@ position = Vector2(344, 502)
 [node name="SpawnPositions" type="Node" parent="."]
 
 [node name="Spawn2" type="Marker2D" parent="SpawnPositions"]
-position = Vector2(128, 510)
+position = Vector2(129, 504)
 
 [node name="Spawn1" type="Marker2D" parent="SpawnPositions"]
-position = Vector2(202, 513)
+position = Vector2(201, 503)
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 spawn_path = NodePath("../SpawnPositions/Spawn2")
 script = ExtResource("4_pxh0s")
+
+[node name="Seeds" type="Node" parent="."]
+
+[node name="Diamond" parent="Seeds" instance=ExtResource("5_ti40y")]
+position = Vector2(530, 509)

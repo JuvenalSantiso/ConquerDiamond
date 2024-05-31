@@ -80,7 +80,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="IPEdit" type="TextEdit" parent="IP/HBoxContainer"]
+[node name="IPEdit" type="LineEdit" parent="IP/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "127.0.0.1:5500"
@@ -105,3 +105,4 @@ text = "X"
 
 [connection signal="button_up" from="VBoxContainer/Host" to="." method="_on_host_button_up"]
 [connection signal="button_up" from="VBoxContainer/Join" to="." method="_on_play_button_up"]
+[connection signal="button_up" from="IP/HBoxContainer/Go" to="." method="_on_go_button_up"]

@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cmrb6vhkusord"]
+
+[ext_resource type="Texture2D" uid="uid://dv8gr21xwt42j" path="res://resources/kanny_pixel_platformer/Tiles/tile_0067.png" id="1_5hhym"]
+[ext_resource type="Script" path="res://objects/scripts/diamond.gd" id="1_x7ib5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yo3uq"]
+radius = 7.0
+
+[node name="Diamond" type="Area2D"]
+collision_layer = 4
+script = ExtResource("1_x7ib5")
+
+[node name="Face" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_5hhym")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_yo3uq")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
