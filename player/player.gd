@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+signal player_picked_diamond(id: int)
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
@@ -30,6 +31,7 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
-	
+
 func picked_diamond():
 	has_diamond = true
+	player_picked_diamond.emit(multiplayer.get_unique_id())

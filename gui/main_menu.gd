@@ -14,5 +14,6 @@ func _on_host_button_up():
 
 
 func _on_go_button_up():
-	GameManager.init_join(ip_text.text)
+	#GameManager.init_join(ip_text.text)
+	GameManager.init_join("127.0.0.1:5820")
 	GameManager.init_game()
