@@ -28,7 +28,7 @@ func _parse_ip(connection_ip):
 #Player functions
 func spawn_player(data):
 	var p = player_scene.instantiate()
-	p.player_picked_diamond.connect(self._diamond_picked)
+	p.player_picked_diamond.connect(Callable(self, "_diamond_picked"))
 	p.set_multiplayer_authority(data)
 	players[data] = p
 	return p

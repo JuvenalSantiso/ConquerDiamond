@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dt7kyle81fk2p"]
 
-[ext_resource type="Script" path="res://player/player.gd" id="1_cf3xh"]
+[ext_resource type="Script" path="res://player/scripts/player.gd" id="1_cf3xh"]
 [ext_resource type="Texture2D" uid="uid://uag4thnxm3f4" path="res://resources/kanny_pixel_platformer/Tiles/Characters/tile_0000.png" id="1_wsba5"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8pkxu"]
