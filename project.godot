@@ -20,9 +20,18 @@ config/icon="res://icon.svg"
 NetworkManager="*res://globals/scripts/network_manager.gd"
 GameManager="*res://globals/scripts/game_manager.gd"
 
+[display]
+
+window/size/resizable=false
+window/vsync/vsync_mode=0
+
 [layer_names]
 
 2d_physics/layer_1="Player"
 2d_physics/layer_2="Platform"
 2d_physics/layer_3="Objects"
 2d_physics/layer_4="Hazards"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
