@@ -1,11 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://dngoj24csxbng"]
+[gd_scene load_steps=9 format=3 uid="uid://dngoj24csxbng"]
 
 [ext_resource type="TileSet" uid="uid://dg2keq1xlqwdc" path="res://levels/tiles/background_tile.tres" id="1_fgcm5"]
 [ext_resource type="Script" path="res://levels/scripts/level_raw.gd" id="1_jfcf0"]
 [ext_resource type="TileSet" uid="uid://6k0n5mxi5bo3" path="res://levels/tiles/platforms.tres" id="2_1gjop"]
 [ext_resource type="PackedScene" uid="uid://cy3555036gbi4" path="res://hazards/spike.tscn" id="3_kngbi"]
 [ext_resource type="Script" path="res://levels/scripts/MultiplayerSpawner.gd" id="4_pxh0s"]
+[ext_resource type="Script" path="res://levels/scripts/hell_zone.gd" id="5_2f01t"]
 [ext_resource type="PackedScene" uid="uid://cmrb6vhkusord" path="res://objects/diamond.tscn" id="5_ti40y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x43vq"]
+size = Vector2(1757, 86)
 
 [node name="LevelRaw" type="Node2D"]
 script = ExtResource("1_jfcf0")
@@ -40,6 +44,15 @@ position = Vector2(839, 534)
 [node name="Spike" parent="Hazards" instance=ExtResource("3_kngbi")]
 position = Vector2(344, 502)
 
+[node name="HellZone" type="Area2D" parent="Hazards"]
+position = Vector2(200, 670)
+collision_layer = 8
+script = ExtResource("5_2f01t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hazards/HellZone"]
+position = Vector2(675.5, 131)
+shape = SubResource("RectangleShape2D_x43vq")
+
 [node name="SpawnPositions" type="Node" parent="."]
 
 [node name="Spawn2" type="Marker2D" parent="SpawnPositions"]
@@ -63,4 +76,5 @@ position = Vector2(530, 509)
 wait_time = 8.0
 one_shot = true
 
+[connection signal="body_entered" from="Hazards/HellZone" to="Hazards/HellZone" method="_on_body_entered"]
 [connection signal="timeout" from="Timers/DiamondTimer" to="." method="_on_diamond_timer_timeout"]
