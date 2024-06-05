@@ -1,12 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://dngoj24csxbng"]
+[gd_scene load_steps=7 format=3 uid="uid://dngoj24csxbng"]
 
 [ext_resource type="TileSet" uid="uid://dg2keq1xlqwdc" path="res://levels/tiles/background_tile.tres" id="1_fgcm5"]
+[ext_resource type="Script" path="res://levels/scripts/level_raw.gd" id="1_jfcf0"]
 [ext_resource type="TileSet" uid="uid://6k0n5mxi5bo3" path="res://levels/tiles/platforms.tres" id="2_1gjop"]
 [ext_resource type="PackedScene" uid="uid://cy3555036gbi4" path="res://hazards/spike.tscn" id="3_kngbi"]
 [ext_resource type="Script" path="res://levels/scripts/MultiplayerSpawner.gd" id="4_pxh0s"]
 [ext_resource type="PackedScene" uid="uid://cmrb6vhkusord" path="res://objects/diamond.tscn" id="5_ti40y"]
 
 [node name="LevelRaw" type="Node2D"]
+script = ExtResource("1_jfcf0")
 
 [node name="Background" type="TileMap" parent="."]
 tile_set = ExtResource("1_fgcm5")
@@ -54,3 +56,10 @@ script = ExtResource("4_pxh0s")
 
 [node name="Diamond" parent="Seeds" instance=ExtResource("5_ti40y")]
 position = Vector2(530, 509)
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="DiamondTimer" type="Timer" parent="Timers"]
+wait_time = 8.0
+
+[connection signal="timeout" from="Timers/DiamondTimer" to="." method="_on_diamond_timer_timeout"]

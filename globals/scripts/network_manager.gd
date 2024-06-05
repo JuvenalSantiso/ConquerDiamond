@@ -99,8 +99,6 @@ func _on_connection_failed() -> void:
 func send_player_info(id: int, usr_name: String) -> void:
 	self.add_peer(id, usr_name)
 	
-	GameManager.add_player({"id": id, "usr_name": usr_name})
-	
 	if multiplayer.is_server():
 		for player_id in self.peer_dict:
 			self.send_player_info.rpc(player_id, peer_dict[player_id].usr_name)

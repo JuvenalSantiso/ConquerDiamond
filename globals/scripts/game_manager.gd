@@ -1,5 +1,7 @@
 extends Node
 
+signal start_diamond_picked
+
 var _PORT: int = 5820
 
 var players = {}
@@ -33,19 +35,20 @@ func spawn_player(data):
 	players[data] = p
 	return p
 
-
-func add_player(data):
-	if !self.players.has(data.id):
-		self.players[data.id] = {
-			"usr_name" : data.usr_name,
-			"id" : data.id,
-			"score": 0
-		}
-
 func remove_player(id):
 	players.erase(id)
 	
+func diamond_sets():
+	for id in self.players:
+		if players[id].has_diamond:
+			winner(id)
+			break
+
+func winner(id):
+	print(id, " WINNER")
+	
 func _diamond_picked(id):
 	print(id, "Picked a diamond")
+	start_diamond_picked.emit()
 
 
